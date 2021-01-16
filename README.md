@@ -32,10 +32,18 @@ Using  <span style="color:deepskyblue; font-weight:bold;">React Native</span> wi
 
 ```Bash
 # Install dependencies
-yarn install
+npm or yarn install
 
 # Run application
-yarn start
+expo start
+
+#if there is an error installing the dependencies, delete the yarn.lock file
+
+#then install the dependencies
+npm or yarn install
+
+#run the application
+expo start
 ```
 
 ## 🚀 Technologies used
