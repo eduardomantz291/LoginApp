@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, Animated } from 'react-native';
+import { Keyboard, StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, Animated } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function App() {
@@ -9,6 +9,9 @@ export default function App() {
   const [logo] = useState(new Animated.ValueXY({x: 130, y: 155}));
 
   useEffect(() => {
+   const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+   const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+
     Animated.parallel([
       Animated.spring(offset.y, {
         toValue: 0,
@@ -23,6 +26,38 @@ export default function App() {
       })
     ]).start();
   }, []);
+
+  function keyboardDidShow() {
+    Animated.parallel([
+      Animated.timing(logo.x, {
+        toValue: 85,
+        duration: 100,
+        useNativeDriver: false
+      }),
+
+      Animated.timing(logo.y, {
+        toValue: 100,
+        duration: 100,
+        useNativeDriver: false
+      }),
+    ]).start();
+  }
+
+  function keyboardDidHide() {
+    Animated.parallel([
+      Animated.timing(logo.x, {
+        toValue: 130,
+        duration: 100,
+        useNativeDriver: false
+      }),
+
+      Animated.timing(logo.y, {
+        toValue: 155,
+        duration: 100,
+        useNativeDriver: false
+      }),
+    ]).start();
+  }
 
   return (
     <KeyboardAvoidingView style={styles.background}>
