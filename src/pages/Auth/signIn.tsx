@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { Keyboard, StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, Animated } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, Keyboard, StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, Animated } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export default function App() {
+export default function SignIn() {
   const [offset] = useState(new Animated.ValueXY({x: 0, y: 100}));
   const [opacity] = useState(new Animated.Value(0))
   const [logo] = useState(new Animated.ValueXY({x: 130, y: 155}));
@@ -59,6 +59,12 @@ export default function App() {
     ]).start();
   }
 
+  const navigation = useNavigation();
+
+  function hadleToNavigateSignUp() {
+    navigation.navigate('SignUp')
+  }
+
   return (
     <KeyboardAvoidingView style={styles.background}>
       <View style={styles.containerLogo}>
@@ -84,7 +90,7 @@ export default function App() {
           <Text style={styles.btnText}>Acessar</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.btnRegister}>
+        <TouchableOpacity style={styles.btnRegister} onPress={() => {hadleToNavigateSignUp()}}>
           <Text style={styles.TextRegister}>Criar conta</Text>
         </TouchableOpacity>
       

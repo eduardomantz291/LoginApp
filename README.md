@@ -39,7 +39,7 @@ expo start
 
 # if there is an error installing the dependencies, delete the yarn.lock file
 
-#then install the dependencies
+# then install the dependencies
 npm or yarn install
 
 # run the application
