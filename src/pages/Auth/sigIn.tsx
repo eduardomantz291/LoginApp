@@ -1,17 +1,47 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, Animated } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function App() {
+  const [offset] = useState(new Animated.ValueXY({x: 0, y: 100}));
+  const [opacity] = useState(new Animated.Value(0))
+  const [logo] = useState(new Animated.ValueXY({x: 130, y: 155}));
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.spring(offset.y, {
+        toValue: 0,
+        speed: 4,
+        bounciness: 20,
+        useNativeDriver: true
+      }),
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 200,
+        useNativeDriver: true,
+      })
+    ]).start();
+  }, []);
+
   return (
     <KeyboardAvoidingView style={styles.background}>
       <View style={styles.containerLogo}>
-        <Image 
+        <Animated.Image 
+          style={{
+            width: logo.x,
+            height: logo.y,
+          }}
           source={require('../../images/logo.png')}
         />
       </View>
-      <View style={styles.containerInput}> 
+
+      <Animated.View style={[styles.containerInput, {
+        opacity: opacity,
+        transform: [
+          { translateY: offset.y }
+        ]
+      }]}> 
         <TextInput style={styles.inputBlock} placeholder="Email" autoCorrect={false} onChangeText={() => {}} />
         <TextInput style={styles.inputBlock} placeholder="Password" autoCorrect={false} onChangeText={() => {}} />
         
@@ -23,7 +53,9 @@ export default function App() {
           <Text style={styles.TextRegister}>Criar conta</Text>
         </TouchableOpacity>
       
-      </View>
+      </Animated.View>
+
+      <StatusBar style="inverted"/>
     </KeyboardAvoidingView>
   );
 }
@@ -51,8 +83,8 @@ const styles = StyleSheet.create({
 
   inputBlock: {
     backgroundColor: '#fff',
-    width: '90%',
-    height: '14%',
+    width: 350,
+    height: 45,
     paddingLeft: 10,
     marginBottom: 15,
     color: '#222',
