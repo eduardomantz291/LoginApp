@@ -15,6 +15,8 @@ export default function SignIn() {
   function handleLoginForm() {
     if (email && password) {
       navigation.navigate('Home')
+    } else {
+      alert("coloque o email e a senha");
     }
   }
 
