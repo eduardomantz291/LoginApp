@@ -2,12 +2,31 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { Keyboard,Animated,TouchableOpacity, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Value } from 'react-native-reanimated';
 
 export default function SignUp() {
   const [offest] = useState(new Animated.ValueXY({x: 0, y: 200}));
   const [opacity] = useState(new Animated.Value(0));
   const [logo] = useState(new Animated.ValueXY({x: 130, y: 155}));
   const [offestLogo] = useState(new Animated.ValueXY({x: 0, y: -100}));
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
+  const navigation = useNavigation();
+
+  function handleCreateUser() {
+    if (name && email && password) {
+      let passwordconfirm = password;
+      if (passwordconfirm == confirm) {
+        navigation.navigate("SignIn")
+      } else {
+        alert("a senha está errada!");
+      }
+    } else {
+      alert("os campos estão vasio")
+    }
+  }
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
@@ -66,8 +85,6 @@ export default function SignUp() {
     ]).start();
   }
 
-  const navigation = useNavigation();
-
   function handleToNavigationLoginForm() {
     navigation.navigate('SignIn');
   }
@@ -93,13 +110,13 @@ export default function SignUp() {
           { translateY:  offest.y }
         ]
       }]}>
-        <TextInput style={styles.inputBlock} placeholder="Nome" autoCorrect={false} onChangeText={() => {}}/>
-        <TextInput style={styles.inputBlock} placeholder="Email" autoCorrect={false} onChangeText={() => {}}/>
+        <TextInput style={styles.inputBlock} placeholder="Nome" autoCorrect={false} onChangeText={setName}/>
+        <TextInput style={styles.inputBlock} placeholder="Email" autoCorrect={false} onChangeText={setEmail}/>
         <View style={styles.containerInputPassword}>
-          <TextInput style={styles.inputPassword} placeholder="Passoword" secureTextEntry={true} autoCorrect={false} onChangeText={() => {}}/>
-          <TextInput style={styles.inputConfirmPassword} placeholder="Confirm Password" secureTextEntry={true} autoCorrect={false} onChangeText={() => {}}/>
+          <TextInput style={styles.inputPassword} placeholder="Passoword" secureTextEntry={true} autoCorrect={false} onChangeText={setPassword}/>
+          <TextInput style={styles.inputConfirmPassword} placeholder="Confirm Password" secureTextEntry={true} autoCorrect={false} onChangeText={setConfirm}/>
         </View>
-        <TouchableOpacity style={styles.btnSubmit}>
+        <TouchableOpacity style={styles.btnSubmit} onPress={() => {handleCreateUser()}}>
           <Text style={styles.TextSubmit}>Acessar</Text>
         </TouchableOpacity>
         

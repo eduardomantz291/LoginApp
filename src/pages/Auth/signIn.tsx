@@ -14,7 +14,7 @@ export default function SignIn() {
 
   function handleLoginForm() {
     if (email && password) {
-      navigation.navigate('home')
+      navigation.navigate('Home')
     }
   }
 
