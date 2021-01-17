@@ -1,15 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { TouchableOpacity, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Animated,TouchableOpacity, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function SignUp() {
+  const [offest] = useState(new Animated.ValueXY({x: 0, y: 100}));
+
+  useEffect(() => {
+    
+  }, [])
+
   return (
     <KeyboardAvoidingView style={styles.background}>
       <View style={styles.containerLogo}>
         <Image source={require('../../images/logo.png')} />
       </View>
 
-      <View style={styles.containerInput}>
+      <Animated.View style={[styles.containerInput, {
+        transform: [
+          { translateY:  offest.y }
+        ]
+      }]}>
         <TextInput style={styles.inputBlock} placeholder="Nome" autoCorrect={false} onChangeText={() => {}}/>
         <TextInput style={styles.inputBlock} placeholder="Email" autoCorrect={false} onChangeText={() => {}}/>
         <View style={styles.containerInputPassword}>
@@ -23,8 +33,9 @@ export default function SignUp() {
         <TouchableOpacity style={styles.btnLogin}>
           <Text style={styles.TextLogin}>Já tem uma conta</Text>
         </TouchableOpacity>
-      </View>
+      </Animated.View>
 
+      <StatusBar style="inverted"/>
     </KeyboardAvoidingView>
   );
 }
@@ -65,7 +76,7 @@ const styles = StyleSheet.create({
     flex: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '87%'
+    width: 350
   },
 
   inputPassword: {
