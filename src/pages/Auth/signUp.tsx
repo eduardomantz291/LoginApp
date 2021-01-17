@@ -1,13 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { Animated,TouchableOpacity, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function SignUp() {
-  const [offest] = useState(new Animated.ValueXY({x: 0, y: 100}));
+  const [offest] = useState(new Animated.ValueXY({x: 0, y: 200}));
+  const [opacity] = useState(new Animated.Value(0));
 
   useEffect(() => {
-    
+    Animated.parallel([
+      Animated.spring(offest.y, {
+        toValue: 0,
+        speed: 2,
+        bounciness: 18,
+        useNativeDriver: true,
+      }),
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 250,
+        useNativeDriver: true,
+      })
+    ]).start();
   }, [])
+
+  const navigation = useNavigation();
+
+  function handleToNavigationLoginForm() {
+    navigation.navigate('SignIn');
+  }
 
   return (
     <KeyboardAvoidingView style={styles.background}>
@@ -16,6 +36,7 @@ export default function SignUp() {
       </View>
 
       <Animated.View style={[styles.containerInput, {
+        opacity: opacity,
         transform: [
           { translateY:  offest.y }
         ]
@@ -30,7 +51,7 @@ export default function SignUp() {
           <Text style={styles.TextSubmit}>Acessar</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.btnLogin}>
+        <TouchableOpacity style={styles.btnLogin} onPress={() => {handleToNavigationLoginForm()}}>
           <Text style={styles.TextLogin}>Já tem uma conta</Text>
         </TouchableOpacity>
       </Animated.View>

@@ -11,7 +11,7 @@ export default function AuthRoutes() {
   return (
     <NavigationContainer>
       <AuthStack.Navigator screenOptions={{ headerShown: false, cardStyle: { backgroundColor: '#f2f3f5' } }}>
-        <AuthStack.Screen name="SingIn" component={SignIn} />
+        <AuthStack.Screen name="SignIn" component={SignIn} />
         <AuthStack.Screen name="SignUp" component={SignUp} />
       </AuthStack.Navigator>
     </NavigationContainer>
