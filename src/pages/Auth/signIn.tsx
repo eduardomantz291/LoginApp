@@ -8,6 +8,15 @@ export default function SignIn() {
   const [opacity] = useState(new Animated.Value(0))
   const [logo] = useState(new Animated.ValueXY({x: 130, y: 155}));
   const [offesetLogo] = useState(new Animated.ValueXY({x: 0, y: -100}));
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigation = useNavigation();
+
+  function handleLoginForm() {
+    if (email && password) {
+      navigation.navigate('home')
+    }
+  }
 
   useEffect(() => {
    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
@@ -66,8 +75,6 @@ export default function SignIn() {
     ]).start();
   }
 
-  const navigation = useNavigation();
-
   function hadleToNavigateSignUp() {
     navigation.navigate('SignUp')
   }
@@ -94,10 +101,10 @@ export default function SignIn() {
           { translateY: offset.y }
         ]
       }]}> 
-        <TextInput style={styles.inputBlock} placeholder="Email" autoCorrect={false} onChangeText={() => {}} />
-        <TextInput style={styles.inputBlock} placeholder="Password" secureTextEntry={true} autoCorrect={false} onChangeText={() => {}} />
+        <TextInput style={styles.inputBlock} placeholder="Email" autoCorrect={false} onChangeText={setEmail} />
+        <TextInput style={styles.inputBlock} placeholder="Password" secureTextEntry={true} autoCorrect={false} onChangeText={setPassword} />
         
-        <TouchableOpacity style={styles.btnSubmit}>
+        <TouchableOpacity style={styles.btnSubmit} onPress={() => {handleLoginForm()}}>
           <Text style={styles.btnText}>Acessar</Text>
         </TouchableOpacity>
         
