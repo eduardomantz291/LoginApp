@@ -7,6 +7,7 @@ export default function SignIn() {
   const [offset] = useState(new Animated.ValueXY({x: 0, y: 100}));
   const [opacity] = useState(new Animated.Value(0))
   const [logo] = useState(new Animated.ValueXY({x: 130, y: 155}));
+  const [offesetLogo] = useState(new Animated.ValueXY({x: 0, y: -100}));
 
   useEffect(() => {
    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow);
@@ -22,6 +23,12 @@ export default function SignIn() {
       Animated.timing(opacity, {
         toValue: 1,
         duration: 200,
+        useNativeDriver: true,
+      }),
+      Animated.spring(offesetLogo.y, {
+        toValue: 0,
+        speed: 4,
+        bounciness: 20,
         useNativeDriver: true,
       })
     ]).start();
@@ -67,7 +74,11 @@ export default function SignIn() {
 
   return (
     <KeyboardAvoidingView style={styles.background}>
-      <View style={styles.containerLogo}>
+      <Animated.View style={[styles.containerLogo , {
+        transform: [
+          { translateY: offesetLogo.y, }
+        ]
+      }]}>
         <Animated.Image 
           style={{
             width: logo.x,
@@ -75,7 +86,7 @@ export default function SignIn() {
           }}
           source={require('../../images/logo.png')}
         />
-      </View>
+      </Animated.View>
 
       <Animated.View style={[styles.containerInput, {
         opacity: opacity,

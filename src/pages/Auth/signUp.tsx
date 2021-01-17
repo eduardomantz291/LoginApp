@@ -25,6 +25,12 @@ export default function SignUp() {
         duration: 250,
         useNativeDriver: true,
       }),
+      Animated.spring(offestLogo.y, {
+        toValue: 0,
+        speed: 2,
+        bounciness: 18,
+        useNativeDriver: true,
+      }),
     ]).start();
   }, [])
 
