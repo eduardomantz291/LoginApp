@@ -96,15 +96,15 @@ export default function SignUp() {
         <TextInput style={styles.inputBlock} placeholder="Nome" autoCorrect={false} onChangeText={() => {}}/>
         <TextInput style={styles.inputBlock} placeholder="Email" autoCorrect={false} onChangeText={() => {}}/>
         <View style={styles.containerInputPassword}>
-          <TextInput style={styles.inputPassword} placeholder="Passoword" autoCorrect={false} onChangeText={() => {}}/>
-          <TextInput style={styles.inputConfirmPassword} placeholder="Confirm Password" autoCorrect={false} onChangeText={() => {}}/>
+          <TextInput style={styles.inputPassword} placeholder="Passoword" secureTextEntry={true} autoCorrect={false} onChangeText={() => {}}/>
+          <TextInput style={styles.inputConfirmPassword} placeholder="Confirm Password" secureTextEntry={true} autoCorrect={false} onChangeText={() => {}}/>
         </View>
         <TouchableOpacity style={styles.btnSubmit}>
           <Text style={styles.TextSubmit}>Acessar</Text>
         </TouchableOpacity>
         
         <TouchableOpacity style={styles.btnLogin} onPress={() => {handleToNavigationLoginForm()}}>
-          <Text style={styles.TextLogin}>Já tem uma conta</Text>
+          <Text style={styles.TextLogin}>Já tem uma conta ?</Text>
         </TouchableOpacity>
       </Animated.View>
 

@@ -21,7 +21,7 @@
 ## 🖥 Preview
 
 <div align="center">
-  <img alt="Happy" src=".github/PreviewLoginApp.png" width="25%">
+  <img alt="Happy" src=".github/priviewLoginApp.png" width="25%">
 </div>
 
 ## :bulb: About Project

@@ -95,7 +95,7 @@ export default function SignIn() {
         ]
       }]}> 
         <TextInput style={styles.inputBlock} placeholder="Email" autoCorrect={false} onChangeText={() => {}} />
-        <TextInput style={styles.inputBlock} placeholder="Password" autoCorrect={false} onChangeText={() => {}} />
+        <TextInput style={styles.inputBlock} placeholder="Password" secureTextEntry={true} autoCorrect={false} onChangeText={() => {}} />
         
         <TouchableOpacity style={styles.btnSubmit}>
           <Text style={styles.btnText}>Acessar</Text>
