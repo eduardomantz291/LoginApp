@@ -20,7 +20,7 @@ export default function SignUp() {
       if (passwordconfirm == confirm) {
         navigation.navigate("SignIn")
       } else {
-        alert("a senha está errada!");
+        alert("as senha está errada!");
       }
     } else {
       alert("os campos estão vasio")
