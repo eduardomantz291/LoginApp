@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, Keyboard, StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import api from '../../services/api';
+
 export default function SignIn() {
   const [offset] = useState(new Animated.ValueXY({x: 0, y: 100}));
   const [opacity] = useState(new Animated.Value(0))
@@ -12,9 +14,20 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
-  function handleLoginForm() {
+  async function handleLoginForm() {
     if (email && password) {
-      navigation.navigate('Home')
+      const emailData = email;
+      const passwordData = password;
+
+      const data = {
+        "email": `${emailData}`,
+        "password": `${passwordData}`
+      }
+
+      const response = await api.post("/auth", data);
+
+      console.log(response.data);
+
     } else {
       alert("coloque o email e a senha");
     }
