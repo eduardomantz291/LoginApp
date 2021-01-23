@@ -13,9 +13,7 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
-  const { signed, signIn } = useContext(AuthContext);
-
-  console.log(signed);
+  const { signed, signIn } = useContext(AuthContext);  
 
   async function handleLoginForm() {
     if (email && password) {
@@ -26,6 +24,7 @@ export default function SignIn() {
         "email": `${emailData}`,
         "password": `${passwordData}`
       });
+    console.log(signed);  
     } else {
       alert("coloque o email e a senha");
     }

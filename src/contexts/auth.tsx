@@ -1,23 +1,30 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import api from '../services/api';
 
 interface AuthContextDate {
   signed: boolean;
-  user: object;
+  user: object | null;
   signIn(userData: object): Promise<void>;
+  signOut(): void;
 }
 
 const AuthContext = createContext<AuthContextDate>({} as AuthContextDate);
 
 export const AuthProvider: React.FC = ({children}) => {
-  async function signIn(userData: object) {
-   const response = await api.post("/auth", userData);
+  const [user, setUser] = useState<object | null>(null);
 
-   console.log(response.data);
+  async function signIn(userData: object) {
+    const response = await api.post("/auth", userData);
+    setUser(response.data.user);
+    api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+  }
+
+  async function signOut() {
+    setUser(null); 
   }
 
   return (
-    <AuthContext.Provider value={{ signed: false , user: {}, signIn }}>
+    <AuthContext.Provider value={{ signed: !!user , user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
