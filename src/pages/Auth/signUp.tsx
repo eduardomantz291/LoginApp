@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { Keyboard,Animated,TouchableOpacity, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Value } from 'react-native-reanimated';
 
 export default function SignUp() {
   const [offest] = useState(new Animated.ValueXY({x: 0, y: 200}));
