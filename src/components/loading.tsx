@@ -1,13 +1,17 @@
 import React from  'react';
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Animated, Image, StyleSheet, Text, View } from 'react-native';
 
 export default function Loading() {
   return (
     <View style={styles.container}>
-      <View style={styles.containerLogo}>
+      <Animated.View style={[styles.containerLogo, {
+        transform: [
+          { translateY: -100 }
+        ]
+      }]}>
         <Image style={{width: 130, height: 155}} source={require('../images/logo.png')} />
-      </View>
+      </Animated.View>
       <View style={styles.loadContainer}>
         <ActivityIndicator size={80} color="#518f79" />
       </View>

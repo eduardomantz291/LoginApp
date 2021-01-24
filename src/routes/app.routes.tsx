@@ -9,7 +9,7 @@ const AppStack = createStackNavigator();
 export default function AppRoutes() {
   return (
     <NavigationContainer>
-      <AppStack.Navigator>
+      <AppStack.Navigator screenOptions={{ headerShown: false, cardStyle: { backgroundColor: '#f2f3f5' } }}>
         <AppStack.Screen name="Home" component={Home} />
       </AppStack.Navigator>
     </NavigationContainer>
