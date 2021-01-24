@@ -42,9 +42,14 @@ export const AuthProvider: React.FC = ({children}) => {
     const response = await api.post("/auth", userData);
     setUser(response.data.user);
     api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+
+    if (response.data.mensage) {
+      alert('Oops! usuario ou senha errada!');
+    } else {
+      await AsyncStorage.setItem('@LAauth:user', JSON.stringify(response.data.user));
+      await AsyncStorage.setItem('@LAauth:token', response.data.token);
+    }
     
-    await AsyncStorage.setItem('@LAauth:user', JSON.stringify(response.data.user));
-    await AsyncStorage.setItem('@LAauth:token', response.data.token);
   }
 
   function signOut() {

@@ -20,12 +20,12 @@ export default function SignIn() {
       const emailData = email;
       const passwordData = password;
 
-    await signIn({
+      await signIn({
         "email": `${emailData}`,
         "password": `${passwordData}`
-    });  
+      });
     } else {
-      alert("coloque o email e a senha");
+      alert("Oops! precisamos que informe o email e a senha");
     }
   }
 

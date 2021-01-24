@@ -31,14 +31,17 @@ export default function SignUp() {
         };
 
         const response = await api.post("/users", data);
-        console.log(response.data);
-
-        navigation.navigate("SignIn");
+        
+        if (response.data.mensage) {
+          alert(response.data.mensage);
+        } else {
+          navigation.navigate("SignIn");
+        }
       } else {
-        alert("as senha está errada!");
+        alert("Eita! confirme de novo as senhas");
       }
     } else {
-      alert("os campos estão vasio")
+      alert("Bom, precimos dos campos preenchidos");
     }
   }
 
