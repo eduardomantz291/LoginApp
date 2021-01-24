@@ -31,7 +31,7 @@ export const AuthProvider: React.FC = ({children}) => {
         setUser(JSON.parse(storageUser));
         setLoading(false);
       } else {
-        setLoading(false);
+        //setLoading(false);
       }
     }
 

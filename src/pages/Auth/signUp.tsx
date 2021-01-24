@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
   },
 
   btnSubmit: {
-    backgroundColor: '#36aaff',
+    backgroundColor: '#518f79',
     width: 350,
     height: 45,
     alignItems: 'center',
