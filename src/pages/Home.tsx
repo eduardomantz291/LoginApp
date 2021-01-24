@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-import AuthContext from '../contexts/auth';
+import { useAuth } from '../contexts/auth';
 
 export default function Home() {
-  const { signOut } = useContext(AuthContext);
+  const { signOut, user } = useAuth();
 
   function hanleSignOut() {
     signOut();
@@ -12,7 +12,8 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <Text>Hello Worlds</Text>
+      <Text>Hello {user?.name}</Text>
+      <Text>Hello {user?.email}</Text>
       <Button title="Logout" onPress={() => hanleSignOut()}/>
     </View>
   );

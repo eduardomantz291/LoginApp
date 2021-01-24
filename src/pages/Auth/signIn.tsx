@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, Keyboard, StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import AuthContext from '../../contexts/auth';
+import { useAuth } from '../../contexts/auth';
 
 export default function SignIn() {
   const [offset] = useState(new Animated.ValueXY({x: 0, y: 100}));
@@ -13,7 +13,7 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
-  const { signed, signIn } = useContext(AuthContext);  
+  const { signed, signIn } = useAuth();  
 
   async function handleLoginForm() {
     if (email && password) {

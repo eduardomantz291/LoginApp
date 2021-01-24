@@ -1,10 +1,16 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../services/api';
 
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
 interface AuthContextDate {
   signed: boolean;
-  user: object | null;
+  user: User | null;
   signIn(userData: object): Promise<void>;
   signOut(): void;
   loading: boolean;
@@ -13,7 +19,7 @@ interface AuthContextDate {
 const AuthContext = createContext<AuthContextDate>({} as AuthContextDate);
 
 export const AuthProvider: React.FC = ({children}) => {
-  const [user, setUser] = useState<object | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -50,6 +56,12 @@ export const AuthProvider: React.FC = ({children}) => {
       {children}
     </AuthContext.Provider>
   );
+}
+
+export function useAuth() {
+  const context = useContext(AuthContext);
+
+  return context;
 }
 
 export default AuthContext;
