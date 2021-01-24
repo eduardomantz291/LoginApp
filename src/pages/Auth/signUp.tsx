@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Keyboard,Animated,TouchableOpacity, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import api from '../../services/api';
+
 export default function SignUp() {
   const [offest] = useState(new Animated.ValueXY({x: 0, y: 200}));
   const [opacity] = useState(new Animated.Value(0));
@@ -14,11 +16,24 @@ export default function SignUp() {
   const [confirm, setConfirm] = useState('');
   const navigation = useNavigation();
 
-  function handleCreateUser() {
+  async function handleCreateUser() {
     if (name && email && password) {
       let passwordconfirm = password;
       if (passwordconfirm == confirm) {
-        navigation.navigate("SignIn")
+        const nameData = name;
+        const emailData = email;
+        const passwordData = password;
+
+        const data = {
+          "name": `${nameData}`,
+          "email": `${emailData}`,
+          "password": `${passwordData}`
+        };
+
+        const response = await api.post("/users", data);
+        console.log(response.data);
+
+        navigation.navigate("SignIn");
       } else {
         alert("as senha está errada!");
       }

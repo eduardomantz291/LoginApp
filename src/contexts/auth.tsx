@@ -30,6 +30,8 @@ export const AuthProvider: React.FC = ({children}) => {
       if (storageUser && storagerToken) {
         setUser(JSON.parse(storageUser));
         setLoading(false);
+      } else {
+        setLoading(false);
       }
     }
 

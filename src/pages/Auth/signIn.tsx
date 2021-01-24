@@ -23,8 +23,7 @@ export default function SignIn() {
     await signIn({
         "email": `${emailData}`,
         "password": `${passwordData}`
-      });
-    console.log(signed);  
+    });  
     } else {
       alert("coloque o email e a senha");
     }
