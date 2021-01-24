@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, Button, Image, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, SafeAreaView, Button, Image, StyleSheet, Text, View, ImageBackgroundBase } from 'react-native';
 
 import { useAuth } from '../contexts/auth';
 
@@ -13,14 +13,18 @@ export default function Home() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.avatarContainer}>
-        <View style={styles.frame}>
-          <Image style={{width: 500, height: 450}} source={require('../images/frame.png')} />
+      <ImageBackground source={require('../images/Splash.png')} style={{width: '100%', height: '100%'}} >
+        <View style={styles.avatarContainer}>
+          <View>
+            <Image style={{width: 500, height: 450}} source={require('../images/frame.png')} />
+          </View>
+          <View style={styles.imageAvatar}>
+            <Image style={styles.avatar} source={require('../images/userAvatar.png')} />
+          </View>
         </View>
-        <View style={styles.imageAvatar}>
-          <Image style={styles.avatar} source={require('../images/userAvatar.png')} />
+        <View style={styles.UserDatails}>
         </View>
-      </View>
+      </ImageBackground>
       <StatusBar style="auto"/>
     </SafeAreaView>
   );
@@ -29,7 +33,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#191919',
     justifyContent: 'center',
     alignItems: 'center',
   },  
@@ -38,10 +42,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     marginTop: -589,
-  },
-
-  frame: {
-  
   },
 
   imageAvatar: {
@@ -55,7 +55,10 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderColor: '#191919',
     borderWidth: 9,
-    
+  },
+
+  UserDatails: {
+
   }
 
 })
