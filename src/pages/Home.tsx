@@ -14,8 +14,16 @@ export default function Home() {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={require('../images/Background.png')} style={{width: '100%', height: '100%'}} >
-        
-         
+        <View style={styles.UserContainer}>
+          <View style={styles.FrameContainer}>
+            <Image style={styles.frame} source={require('../images/frame.png')}/>
+          </View>
+          <View style={styles.UserDatail}>
+            <Image style={styles.UserAvatar} source={require('../images/userAvatar.png')}/>
+            <Text style={styles.UserName}>{user?.name}</Text>
+            <Text style={styles.UserEmail}>{user?.email}</Text>
+          </View>
+        </View>
       </ImageBackground>
       <StatusBar style="dark"/>
     </SafeAreaView>
@@ -24,9 +32,34 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#191919',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }, 
+  },
+
+  UserContainer: {
+
+  },
+
+  FrameContainer: {
+
+  },
+
+  frame: {
+    width: '100%',
+  },
+
+  UserDatail: {
+
+  },
+  
+  UserAvatar: {
+
+  },
+
+  UserName: {
+
+  },
+
+  UserEmail: {
+
+  }
 })
