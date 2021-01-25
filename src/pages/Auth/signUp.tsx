@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { Keyboard,Animated,TouchableOpacity, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ImageBackground, Keyboard,Animated,TouchableOpacity, Image, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import api from '../../services/api';
@@ -107,7 +107,8 @@ export default function SignUp() {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.background}>
+    <ImageBackground style={styles.background} source={require('../../images/Background.png')}>
+      <KeyboardAvoidingView>
       <Animated.View style={[styles.containerLogo, {
         transform: [
           { translateY: offestLogo.y, }
@@ -143,7 +144,8 @@ export default function SignUp() {
       </Animated.View>
 
       <StatusBar style="inverted"/>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </ImageBackground>
   );
 }
 
@@ -158,6 +160,7 @@ const styles = StyleSheet.create({
   containerLogo: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
 
   containerInput: {

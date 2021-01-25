@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { TouchableOpacity, Keyboard, StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, Animated } from 'react-native';
+import { ImageBackground, TouchableOpacity, Keyboard, StyleSheet, Text, View, KeyboardAvoidingView, Image, TextInput, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../contexts/auth';
 
@@ -91,42 +91,44 @@ export default function SignIn() {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.background}>
-      <Animated.View style={[styles.containerLogo , {
-        transform: [
-          { translateY: offesetLogo.y, }
-        ]
-      }]}>
-        <Animated.Image 
-          style={{
-            width: logo.x,
-            height: logo.y,
-          }}
-          source={require('../../images/logo.png')}
-        />
-      </Animated.View>
+    <ImageBackground style={styles.background} source={require('../../images/Background.png')}>
+      <KeyboardAvoidingView>
+        <Animated.View style={[styles.containerLogo , {
+          transform: [
+            { translateY: offesetLogo.y, }
+          ]
+        }]}>
+          <Animated.Image 
+            style={{
+              width: logo.x,
+              height: logo.y,
+            }}
+            source={require('../../images/logo.png')}
+          />
+        </Animated.View>
 
-      <Animated.View style={[styles.containerInput, {
-        opacity: opacity,
-        transform: [
-          { translateY: offset.y }
-        ]
-      }]}> 
-        <TextInput style={styles.inputBlock} placeholder="Email" autoCorrect={false} onChangeText={setEmail} />
-        <TextInput style={styles.inputBlock} placeholder="Password" secureTextEntry={true} autoCorrect={false} onChangeText={setPassword} />
+        <Animated.View style={[styles.containerInput, {
+          opacity: opacity,
+          transform: [
+            { translateY: offset.y }
+          ]
+        }]}> 
+          <TextInput style={styles.inputBlock} placeholder="Email" autoCorrect={false} onChangeText={setEmail} />
+          <TextInput style={styles.inputBlock} placeholder="Password" secureTextEntry={true} autoCorrect={false} onChangeText={setPassword} />
+          
+          <TouchableOpacity style={styles.btnSubmit} onPress={() => {handleLoginForm()}}>
+            <Text style={styles.btnText}>Acessar</Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity style={styles.btnRegister} onPress={() => {hadleToNavigateSignUp()}}>
+            <Text style={styles.TextRegister}>Criar conta</Text>
+          </TouchableOpacity>
         
-        <TouchableOpacity style={styles.btnSubmit} onPress={() => {handleLoginForm()}}>
-          <Text style={styles.btnText}>Acessar</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity style={styles.btnRegister} onPress={() => {hadleToNavigateSignUp()}}>
-          <Text style={styles.TextRegister}>Criar conta</Text>
-        </TouchableOpacity>
-      
-      </Animated.View>
+        </Animated.View>
 
       <StatusBar style="inverted"/>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </ImageBackground>
   );
 }
 
@@ -135,12 +137,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#191919'
+    backgroundColor: '#191919',
   },
 
   containerLogo: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
 
   containerInput: {
